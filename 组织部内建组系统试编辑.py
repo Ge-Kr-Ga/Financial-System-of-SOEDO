@@ -208,7 +208,7 @@ def details_page():
         # 使用 radio 按钮实现四选一
         filter_choice = st.radio(
             "选择筛选方式",
-            ["按操作类型筛选", "按上传项目筛选", "按姓名筛选", "按部门筛选"],
+            ["按材料分类筛选", "按上传项目筛选", "按姓名筛选", "按部门筛选"],
             key="filter_radio"
         )
 
@@ -223,14 +223,14 @@ def details_page():
                 st.write(f"显示 {selected_value} 部门的上传记录：")
                 st.dataframe(filtered_df)
 
-        elif filter_choice == "按操作类型筛选":
-            # 获取所有操作类型的唯一值
-            operation_types = df["操作类型"].unique()
-            selected_value = st.selectbox("选择操作类型", operation_types)
+        elif filter_choice == "按材料分类筛选":
+            # 获取所有材料分类的唯一值
+            categories = df["材料分类"].unique()
+            selected_value = st.selectbox("选择材料分类", categories)
             
             if st.button("确定筛选", key="confirm_filter"):
-                filtered_df = df[df["操作类型"] == selected_value]
-                st.write(f"显示操作类型为 {selected_value} 的上传记录：")
+                filtered_df = df[df["材料分类"] == selected_value]
+                st.write(f"显示材料分类为 {selected_value} 的上传记录：")
                 st.dataframe(filtered_df)
 
         elif filter_choice == "按上传项目筛选":
